@@ -1,0 +1,13 @@
+<h1>Chat room</h1>
+
+<form>
+    <label>
+        発言する: <input type="text" data-behavior="room_speaker">
+    </label>
+</form>
+<br/>
+<div id="messages">
+    <% @messages.each do |message| %>
+        <div><%= message.body %></div>
+    <% end %>
+</div>

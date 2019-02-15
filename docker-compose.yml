@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db_chat_app:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - "5438:5438"
+  web_chat_app:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3010 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3010:3010"
+    depends_on:
+      - db_chat_app
