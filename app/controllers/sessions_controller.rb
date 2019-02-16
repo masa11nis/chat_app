@@ -5,9 +5,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(name: session_params[:name])
 
-    if user&& authenticate(session_params[:password])
+    if user && user.authenticate(session_params[:password])
       log_in user
       return redirect_to session[:callback], notice: "ログインしました。" if session[:callback].present?
+      redirect_to rooms_show_path, notice: "ログインしました。"
     else
       reder :new
     end
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to login_path, notice: "ログアウトしました。"
+    redirect_to root_path, notice: "ログアウトしました。"
   end
 
   private

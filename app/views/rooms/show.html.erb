@@ -1,13 +1,13 @@
-<h1>Chat room</h1>
+<h1><%= @user.name %> Chat room</h1>
 
 <form>
     <label>
-        発言する: <input type="text" data-behavior="room_speaker">
+        message: <input type="text" data-behavior="room_speaker">
     </label>
 </form>
 <br/>
 <div id="messages">
     <% @messages.each do |message| %>
-        <div><%= message.body %></div>
+        <div><%= "#{message.user_name}: #{message.content}" %></div>
     <% end %>
 </div>

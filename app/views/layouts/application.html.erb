@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <header>
+      <div class="container">
+        <ul>
+          <% if logged_in? %>
+            <li><%= link_to "Log out", logout_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "log in", root_path %></li>
+            <li><%= link_to "Sign up", new_user_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </header>
     <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
