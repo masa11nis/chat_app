@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      log_in @user
       redirect_to rooms_show_path, notice: "ユーザー名:#{@user.name} ユーザー登録完了"
     else
       render :new
